@@ -1,7 +1,13 @@
-# pyobfuscate.com-deobfuscator
-the first pyobfuscate.com deobfuscator open source
+### pyobfuscate.com deobfuscator
+- The first pyobfuscate.com deobfuscator open source
 
-Instruction:
+### ❗ Why I release this code?
+- pyobfuscate.com is a skidded obfuscator, the staff of the site has always used algorithms and codes of other people without ever giving credits
+- when they first released the site they used [Berserker](https://github.com/billythegoat356/Berserker/)
+- later they started using [pycloak](https://github.com/addi00000/pycloak)
+- now they are using [razvan obfuscator](https://github.com/im-razvan/Python-Obfuscator)
+
+### ⚙️ Instruction
 
 -1: install python  
 
@@ -13,8 +19,19 @@ Instruction:
 
 -5: put the name of your obfuscated file  
 
-C͟o͟n͟t͟a͟c͟t͟
-- 📫 If you need help contact me on discord: **over_on_top**
+### 📜 ChangeLog
 
-Note:
+```diff
+v1.0.1 ⋮ 08/01/2024
++ Updated to latest version of pyobfuscate.com :)
+
+v1.0.0 ⋮ 01/11/2023
+! Initial release
+```
+
+### 📫 Contact
+
+- If you need help contact me on discord: **over_on_top**
+
+### ❤️ Note
 -  ❤️ this code is made with love
