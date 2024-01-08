@@ -1,10 +1,9 @@
 import re
-import ast
-import base64
-import hashlib
 
+from hashlib import sha256
+from pystyle import Center, Colors, Colorate, System, Write
 from Crypto.Cipher import AES
-from pystyle import Center, Anime, Colors, Colorate, System, Write
+from Crypto.Util.Padding import unpad
 
 System.Clear()
 System.Title("Pyobfuscate.com deobfuscator by over_on_top")
@@ -25,44 +24,32 @@ print(Colorate.Diagonal(Colors.red_to_yellow, Center.XCenter(text)))
 
 file = Write.Input("insert the name of the file -> ", Colors.red_to_yellow, interval=0.005)
 
-def derive_key_and_iv(password, salt):
-    dk = hashlib.pbkdf2_hmac('sha256', password.encode(), salt, 100000)
-    key = dk[:16]
-    iv = dk[16:]
-    return key, iv
-
-def aes_decrypt(encrypted_data, key):
-    encrypted_data = base64.b85decode(encrypted_data)
-    salt = encrypted_data[:8]
-    key, iv = derive_key_and_iv(key, salt)
-    cipher = AES.new(key, AES.MODE_CFB, iv)
-    data = cipher.decrypt(encrypted_data[8:])
-    return data.decode()
+def decrypt_string(encrypted_data, pyobfuscate_str):
+    return unpad(
+        AES.new(
+            sha256(str(list(pyobfuscate_str)[0][0] + list(pyobfuscate_str)[1][0]).encode()).digest()[:24],
+            AES.MODE_CBC,
+            encrypted_data[:AES.block_size]
+        ).decrypt(encrypted_data[AES.block_size:]),
+        AES.block_size
+    ).decode()
 
 with open(file, "r") as f:
     lines = f.readlines()
 
     for i, line in enumerate(lines, start=1):
-        match = re.search(r'obfuscate = (.+)', line)
+        match = re.search(r'pyobfuscate = (.+)', line)
         if match:
-            obfuscate_str = match.group(1)
-            line_number = i
+            pyobfuscate_str = match.group(1)
             break
 
-    if(".replace('\\n','')]))") in obfuscate_str:
-        pass
-    else:
-        while(".replace('\\n','')]))" not in obfuscate_str):
-            obfuscate_str+=lines[line_number]
-            line_number+=1
-    
-    obfuscate = str(eval(obfuscate_str))
+    pyobfuscate_str = eval(pyobfuscate_str)
 
-    dictionary = ast.literal_eval(obfuscate)
+    encrypted_data = pyobfuscate_str[1][2]
 
-    encrypted_data = list(dictionary.values())[0]
-    key = list(dictionary.keys())[0][1:-1]
+    content_deobfuscated = decrypt_string(encrypted_data,pyobfuscate_str)
 
-with open("output.py", "w", encoding="utf-8") as f:
-    f.write(aes_decrypt(encrypted_data,key))
-    Write.Print("your file has been deobfuscated successfully and now the src code is in output.py! \n", Colors.red_to_yellow, interval=0.005)
+    with open("output.py", "w") as f:
+        f.write(content_deobfuscated)
+        
+Write.Print("your file has been deobfuscated successfully and now the src code is in output.py! \n", Colors.red_to_yellow, interval=0.005)
