@@ -1,9 +1,9 @@
 ### pyobfuscate.com deobfuscator
-- The first pyobfuscate.com deobfuscator open source
+- The first open source pyobfuscate.com deobfuscator
 
-### ❗ Why I release this code?
-- pyobfuscate.com is a skidded obfuscator, the staff of the site has always used algorithms and codes of other people without ever giving credits
-- when they first released the site they used [Berserker](https://github.com/billythegoat356/Berserker/)
+### ❗ Why I released this code?
+- pyobfuscate.com is a skidded obfuscator, the staff of the site has always used algorithms and codes of other people without ever giving credits to them
+- when they first released the site they were using [Berserker](https://github.com/billythegoat356/Berserker/)
 - later they started using [pycloak](https://github.com/addi00000/pycloak)
 - now they are using [razvan obfuscator](https://github.com/im-razvan/Python-Obfuscator)
 
