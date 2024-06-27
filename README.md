@@ -22,6 +22,10 @@
 ### 📜 ChangeLog
 
 ```diff
+v1.0.2 ⋮ 27/06/2024
++ Updated to latest version of pyobfuscate.com :)
++ Added support for old version of pyobfuscate.com
+
 v1.0.1 ⋮ 08/01/2024
 + Updated to latest version of pyobfuscate.com :)
 
