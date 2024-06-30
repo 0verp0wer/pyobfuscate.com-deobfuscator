@@ -65,7 +65,7 @@ def find_multiline_value(lines, key):
         return ' '.join(value_lines)
     return None
 
-with open(file, "r") as f:
+with open(file, "r", encoding="utf-8") as f:
     lines = f.readlines()
 
     value_str = find_multiline_value(lines, 'pyobfuscate')
@@ -74,7 +74,7 @@ with open(file, "r") as f:
 
     content_deobfuscated = decrypt_string(eval(value_str))
 
-    with open("output.py", "w") as f:
+    with open("output.py", "w", encoding="utf-8") as f:
         f.write(content_deobfuscated)
         
 Write.Print("your file has been deobfuscated successfully and now the src code is in output.py! \n", Colors.red_to_yellow, interval=0.005)
