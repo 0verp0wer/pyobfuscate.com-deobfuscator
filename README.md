@@ -1,5 +1,8 @@
-### pyobfuscate.com deobfuscator
-- The first open source pyobfuscate.com deobfuscator
+### Pyobfuscate.com deobfuscator
+- the first open source pyobfuscate.com deobfuscator
+
+### ❓ You have got an error?
+- if you encountered an error please try both v1 and v2 versions of the deobfuscator and if in the end you still have an error please open an issues or contact me on discord
 
 ### ❗ Why I released this code?
 - pyobfuscate.com is a skidded obfuscator, the staff of the website has always used algorithms and codes of other people without ever giving credits to them
@@ -22,6 +25,10 @@
 ### 📜 ChangeLog
 
 ```diff
+v2.0.0 ⋮ 17/07/2024
++ Updated to latest version of pyobfuscate.com :)
+! from now all updated version will be put in deobfuscatorv2.py
+
 v1.0.2 ⋮ 27/06/2024
 + Updated to latest version of pyobfuscate.com :)
 + Added support for old version of pyobfuscate.com
