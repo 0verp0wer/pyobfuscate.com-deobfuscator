@@ -4,9 +4,7 @@ import hashlib
 from base64 import b85decode
 from pystyle import Center, Colors, Colorate, System, Write
 from Crypto.Cipher import AES
-from Crypto.Random import get_random_bytes
 from Crypto.Protocol.KDF import PBKDF2
-from Crypto.Util.Padding import unpad
 
 System.Clear()
 System.Title("pyobfuscate.com deobfuscator v2 by over_on_top")
