@@ -25,16 +25,19 @@
 ### 📜 ChangeLog
 
 ```diff
+v2.0.1 ⋮ 26/07/2024
++ Updated to latest version of pyobfuscate.com
+
 v2.0.0 ⋮ 17/07/2024
-+ Updated to latest version of pyobfuscate.com :)
++ Updated to latest version of pyobfuscate.com 
 ! from now all updated version will be put in deobfuscatorv2.py
 
 v1.0.2 ⋮ 27/06/2024
-+ Updated to latest version of pyobfuscate.com :)
++ Updated to latest version of pyobfuscate.com 
 + Added support for old version of pyobfuscate.com
 
 v1.0.1 ⋮ 08/01/2024
-+ Updated to latest version of pyobfuscate.com :)
++ Updated to latest version of pyobfuscate.com 
 
 v1.0.0 ⋮ 01/11/2023
 ! Initial release
