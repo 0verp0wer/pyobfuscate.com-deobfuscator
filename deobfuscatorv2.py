@@ -1,5 +1,7 @@
 import re
-import hashlib
+import ast
+import sys
+import zlib
 
 from base64 import b85decode
 from pystyle import Center, Colors, Colorate, System, Write
@@ -35,18 +37,36 @@ print(Colorate.Diagonal(Colors.red_to_yellow, Center.XCenter(text)))
 file = Write.Input("insert the name of the file -> ", Colors.red_to_yellow, interval=0.005)
 
 with open(file, "r", encoding="utf-8") as f:
+    content_file = f.read()
+    f.seek(0)
     lines = f.readlines()
 
-for i, line in enumerate(lines):
-    if line.strip().startswith("pyobfuscate("):
-        pyobfuscate_value = lines[i]
+if "pyobfuscate(" in content_file:
+    for i, line in enumerate(lines):
+        if line.strip().startswith("pyobfuscate("):
+            pyobfuscate_value = lines[i]
+            
+            pyc_value = re.search(r"'pyc'\s*:\s*\"\"\"(.*?)\"\"\"", pyobfuscate_value, re.DOTALL).group(1)
+            pye_value = re.search(r"'pye'\s*:\s*\"\"\"(.*?)\"\"\"", pyobfuscate_value, re.DOTALL).group(1)
+            httpspyobfuscatecom = re.search(r"['\"]([lI]+)['\"]", pyobfuscate_value, re.DOTALL).group(0)
+            content = deobfuscate(pyc_value, pye_value, httpspyobfuscatecom)
+            break
+else:
+    hex_string = re.findall(r"fromhex\('([0-9a-fA-F]+)'(?!\))", content_file)[0]
+    layer_2 = zlib.decompress(bytes.fromhex(hex_string)).decode()
+
+    obfuscated_code = ";".join(value for value in layer_2.split(";")[:-1])
+
+    sys.setrecursionlimit(100000000)
         
-        pyc_value = re.search(r"'pyc'\s*:\s*\"\"\"(.*?)\"\"\"", pyobfuscate_value, re.DOTALL).group(1)
-        pye_value = re.search(r"'pye'\s*:\s*\"\"\"(.*?)\"\"\"", pyobfuscate_value, re.DOTALL).group(1)
-        httpspyobfuscatecom = re.search(r"['\"]([lI]+)['\"]", pyobfuscate_value, re.DOTALL).group(0)
-        content = deobfuscate(pyc_value, pye_value, httpspyobfuscatecom)
-        break
-    
+    exec(obfuscated_code)
+
+    base85_code = ast.unparse(_)
+
+    base85_string = re.findall(r"\.b85decode\('([^']+)'\.encode\(\)\)", base85_code)[0]
+
+    content = b85decode(base85_string.encode()).decode()
+
 with open("out.py", "w") as f:
     f.write(content)
     
