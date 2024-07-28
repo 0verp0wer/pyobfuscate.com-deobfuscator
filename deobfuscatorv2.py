@@ -58,10 +58,12 @@ else:
     obfuscated_code = ";".join(value for value in layer_2.split(";")[:-1])
 
     sys.setrecursionlimit(100000000)
+
+    variable_code = re.findall(r'(\w+)\s*=\s*None', obfuscated_code)[0]
         
     exec(obfuscated_code)
 
-    base85_code = ast.unparse(_)
+    base85_code = ast.unparse(eval(variable_code))
 
     base85_string = re.findall(r"\.b85decode\('([^']+)'\.encode\(\)\)", base85_code)[0]
 
